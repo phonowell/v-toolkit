@@ -1,0 +1,1 @@
+(function(){module.exports=function(n,o){var t,r,e,i,u,c,f,m,p;if(!n)return"";if(!o)return n;if(~n.search("components:"))return n;for(m="",r="",e=i=0,u=o.length;i<u;e=++i)p=o[e],[c,f]=p.split(" "),m=[m,`import ${t=`_xComponent${e}`} from '@/component/${f}.vue'`].join("\n"),r=[r,`'${c}': ${t}`].join(", ");return[n=[m,n].join("\n"),`  components: {${r}}`].join("\n")}}).call(this);

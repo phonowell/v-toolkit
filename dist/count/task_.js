@@ -1,0 +1,1 @@
+(function(){var e;e=require("fire-keeper"),module.exports=async function(r){var t,a,n,f,o,s;if(!r)return r;for((f=await e.source_("./task/*.coffee")).sort(),t=[],a=0,n=f.length;a<n;a++)s=f[a],o=e.getBasename(s),t=[...t,`- [${o}](../task/${o}.coffee)`];return[...r,"## 任务","",`共计${f.length}个任务。`,"",...t,""]}}).call(this);

@@ -1,0 +1,1 @@
+(function(){module.exports=function(i){return i?["@import '~@/copies/basic'",i].join("\n"):""}}).call(this);

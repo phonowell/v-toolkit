@@ -1,0 +1,1 @@
+(function(){module.exports=function(t){var e,n;return t?(n=[(e=new Date).getFullYear(),1+e.getMonth(),e.getDate()].join("/"),[...t,`**本章节内容最后更新于\`${n}\`。**`,""]):t}}).call(this);

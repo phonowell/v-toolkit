@@ -1,0 +1,1 @@
+(function(){var e;e=require("fire-keeper"),module.exports=async function(r){var n,o,t,c,f,u;if(!r)return r;for((c=await e.source_("./source/function/*.coffee")).sort(),n=[],o=0,t=c.length;o<t;o++)u=c[o],f=e.getBasename(u),n=[...n,`- [$.${f}()](../source/function/${f}.coffee)`];return[...r,"## 函数","",`共计${c.length}个函数。`,"",...n,""]}}).call(this);

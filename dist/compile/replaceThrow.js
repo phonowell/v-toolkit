@@ -1,0 +1,1 @@
+(function(){module.exports=function(r){return r.replace(/throw/g,"throw new Error").replace(/new Error new Error/g,"new Error")}}).call(this);

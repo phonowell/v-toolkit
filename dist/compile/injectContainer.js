@@ -1,0 +1,1 @@
+(function(){module.exports=function(n){var t;return[".page",...function(){var r,o,u,e;for(e=[],r=0,o=(u=n.split("\n")).length;r<o;r++)t=u[r],e.push(`  ${t}`);return e}()].join("\n")}}).call(this);

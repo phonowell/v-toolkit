@@ -1,0 +1,1 @@
+(function(){var e;require("fire-keeper"),e=require("path"),module.exports=function(r,...i){return require(e.resolve(__dirname,`dist/${r}/index`))(...i)}}).call(this);

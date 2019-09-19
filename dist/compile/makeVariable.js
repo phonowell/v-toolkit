@@ -1,0 +1,1 @@
+(function(){var e;e=require("fire-keeper"),module.exports=function(r){var a,t;return t=e.getDirname(r),{basename:a=e.getBasename(r),pathSource:t,pathTarget:[t.replace(/\/source/,"/src"),"/",a,".vue"].join("")}}}).call(this);

@@ -1,0 +1,1 @@
+(function(){var e;e=require("fire-keeper"),module.exports=async function(){var a,r,t,i,o,n,l,c,d,s;for(c={},t=0,o=(l=await e.source_("./data/api/*.yaml")).length;t<o;t++)for(i in d=l[t],n=e.getBasename(d),r=await e.read_(d))delete(s=r[i]).doc,delete s.mock,c[`${n}/${i}`]=s;return a=`export default ${e.parseString(c)};`,await e.write_("./src/module/api.js",a)}}).call(this);

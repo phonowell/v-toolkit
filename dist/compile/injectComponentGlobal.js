@@ -1,0 +1,1 @@
+(function(){module.exports=function(n){var t,o,i;for(t=0,o=(i=["router-link","thumb"]).length;t<o;t++)!function(t){if(~n.search(t))n=[`//- inject = '${t} global/${t}'`,n].join("\n")}(i[t]);return n}}).call(this);

@@ -1,0 +1,1 @@
+(function(){var n;n=require("lodash"),module.exports=function(e){var r;return e?~e.search(/inject = '/)?(r=[],e=e.replace(/inject = '(.*?)'/g,function(n,e){return r.push(e),""}),r=n.uniq(r),(e=new String(e)).component=r,e):e:""}}).call(this);

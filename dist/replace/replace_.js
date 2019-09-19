@@ -1,0 +1,1 @@
+(function(){var r;r=require("fire-keeper"),module.exports=async function(e,i){var t,n;if("string"!==(n=r.type(e)))throw new Error(`invalid type '${n}'`);if("function"!==(n=r.type(i)))throw new Error(`invalid type '${n}'`);return t=i(t=await r.read_(e)),await r.write_(e,t)}}).call(this);
