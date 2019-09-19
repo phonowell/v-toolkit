@@ -1,0 +1,26 @@
+{
+  "author": "Mimiko Phonowell <phonowell@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/phonowell/v-toolkit/issues"
+  },
+  "description": "v-toolkit server",
+  "homepage": "https://github.com/phonowell/v-toolkit",
+  "keywords": [
+    "v-toolkit"
+  ],
+  "license": "GPL-3.0+",
+  "main": "./index.js",
+  "name": "v-toolkit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phonowell/v-toolkit.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "url": "https://github.com/phonowell/v-toolkit",
+  "version": "0.0.1",
+  "dependencies": {
+    "fire-keeper": "0.0.163"
+  }
+}
