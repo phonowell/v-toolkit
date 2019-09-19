@@ -1,1 +1,14 @@
-(function(){var e;require("fire-keeper"),e=require("path"),module.exports=function(r,...i){return require(e.resolve(__dirname,`dist/${r}/index`))(...i)}}).call(this);
+(function() {
+  var $, path;
+
+  $ = require('fire-keeper');
+
+  path = require('path');
+
+  module.exports = function(key, ...arg) {
+    var m;
+    m = require(path.resolve(__dirname, `dist/${key}/index`));
+    return m(...arg);
+  };
+
+}).call(this);

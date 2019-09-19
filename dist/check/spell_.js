@@ -1,1 +1,49 @@
-(function(){var e,t,r;t=require("lodash"),e=require("fire-keeper"),r=require("path"),module.exports=async function(){var i,a,f,n,o,s,u,l,c,h,d,p,g,_,k;for(e.info("check 'spell'"),e.info().pause(),a=await e.read_(r.resolve(__dirname,"../../data/spell.yaml")),g=await e.source_(["./*.coffee","./dist/**/*.coffee","./dist/**/*.pug","./dist/**/*.styl","./task/**/*.coffee","./test/**/*.coffee","./toolkit/**/*.coffee"]),d=await async function(){var t,r,i;for(i=[],t=0,r=g.length;t<r;t++)k=g[t],i.push(await e.read_(k));return i}(),e.info().resume(),p=[],f=n=0,u=g.length;n<u;f=++n)for(k=g[f],i=d[f],o=0,l=a.length;o<l;o++)_=a[o],~i.search(_)&&p.push(`found '${_}' in '${k}'`);if(!p.length)return this;for(s=0,c=(p=t.uniq(p)).length;s<c;s++)h=p[s],e.info(h);return this}}).call(this);
+(function() {
+  var $, _, path;
+
+  _ = require('lodash');
+
+  $ = require('fire-keeper');
+
+  path = require('path');
+
+  // return
+  module.exports = async function() {
+    var cont, data, i, j, k, l, len, len1, len2, line, listCont, listResult, listSource, rule, source;
+    $.info("check 'spell'");
+    $.info().pause();
+    data = (await $.read_(path.resolve(__dirname, '../../data/spell.yaml')));
+    listSource = (await $.source_(['./*.coffee', './dist/**/*.coffee', './dist/**/*.pug', './dist/**/*.styl', './task/**/*.coffee', './test/**/*.coffee', './toolkit/**/*.coffee']));
+    listCont = (await (async function() {
+      var j, len, results;
+      results = [];
+      for (j = 0, len = listSource.length; j < len; j++) {
+        source = listSource[j];
+        results.push((await $.read_(source)));
+      }
+      return results;
+    })());
+    $.info().resume();
+    listResult = [];
+    for (i = j = 0, len = listSource.length; j < len; i = ++j) {
+      source = listSource[i];
+      cont = listCont[i];
+      for (k = 0, len1 = data.length; k < len1; k++) {
+        rule = data[k];
+        if (~cont.search(rule)) {
+          listResult.push(`found '${rule}' in '${source}'`);
+        }
+      }
+    }
+    if (!listResult.length) {
+      return this;
+    }
+    listResult = _.uniq(listResult);
+    for (l = 0, len2 = listResult.length; l < len2; l++) {
+      line = listResult[l];
+      $.info(line);
+    }
+    return this;
+  };
+
+}).call(this);

@@ -1,1 +1,30 @@
-(function(){var e;e=require("fire-keeper"),module.exports=async function(r){var a,t,o,n,i,c,u,f,l,m;if(!r)return r;for((f=await e.source_("./data/api/**/*.yaml")).sort(),a=[],o=0,n=0,c=f.length;n<c;n++)for(i in l=f[n],t=e.getBasename(l),u=await e.read_(l))m=u[i],a=[...a,`- ${t}/${i}: ${m.url} [document](${m.doc}) / [mock](${m.mock})`],o++;return[...r,"## 接口","",`共计${o}个接口。`,"",...a,""]}}).call(this);
+(function() {
+  var $;
+
+  $ = require('fire-keeper');
+
+  // return
+  module.exports = async function(cont) {
+    var _cont, basename, count, i, key, len, list, listSource, source, value;
+    if (!cont) {
+      return cont;
+    }
+    listSource = (await $.source_('./data/api/**/*.yaml'));
+    listSource.sort();
+    _cont = [];
+    count = 0;
+    for (i = 0, len = listSource.length; i < len; i++) {
+      source = listSource[i];
+      basename = $.getBasename(source);
+      list = (await $.read_(source));
+      for (key in list) {
+        value = list[key];
+        _cont = [..._cont, `- ${basename}/${key}: ${value.url} [document](${value.doc}) / [mock](${value.mock})`];
+        count++;
+      }
+    }
+    // return
+    return [...cont, '## 接口', '', `共计${count}个接口。`, '', ..._cont, ''];
+  };
+
+}).call(this);

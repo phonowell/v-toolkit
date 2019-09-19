@@ -1,5 +1,8 @@
 module.exports = (cont) ->
 
+  unless cont
+    return ''
+
   for key in ['router-link', 'thumb']
     do (key) ->
 

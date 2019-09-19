@@ -1,1 +1,62 @@
-(function(){var n,o,e;o=require("lodash"),n=require("fire-keeper"),e=require("axios"),module.exports=async function(){var r,i,a,t,u,c,h,l,f,s,d,m,p,g,k,w,$;for(n.info("check 'api'"),n.info().pause(),m=await n.source_("./data/api/**/*.yaml"),s=await async function(){var o,e,r;for(r=[],o=0,e=m.length;o<e;o++)w=m[o],r.push(await n.read_(w));return r}(),n.info().resume(),d=[],a=t=0,h=m.length;t<h;a=++t)for(c in w=m[a],p=n.getBasename(w),r=s[a]){(null!=(g=($=r[c]).doc)?g.length:void 0)||d.push(`found no 'doc' in '${p}/${c}'`),(null!=(k=$.mock)?k.length:void 0)||d.push(`found no 'mock' in '${p}/${c}'`);try{if(200!==(i=await e[$.method]($.mock)).data.code)throw n.i(i.data),new Error}catch(n){n,d.push(`'mock' could not work in '${p}/${c}': '${$.url}'`)}}if(!d.length)return this;for(u=0,l=(d=o.uniq(d)).length;u<l;u++)f=d[u],n.info(f);return this}}).call(this);
+(function() {
+  var $, _, axios;
+
+  _ = require('lodash');
+
+  $ = require('fire-keeper');
+
+  axios = require('axios');
+
+  // return
+  module.exports = async function() {
+    var cont, data, e, i, j, k, key, len, len1, line, listCont, listResult, listSource, name, ref, ref1, source, value;
+    $.info("check 'api'");
+    $.info().pause();
+    listSource = (await $.source_('./data/api/**/*.yaml'));
+    listCont = (await (async function() {
+      var j, len, results;
+      results = [];
+      for (j = 0, len = listSource.length; j < len; j++) {
+        source = listSource[j];
+        results.push((await $.read_(source)));
+      }
+      return results;
+    })());
+    $.info().resume();
+    listResult = [];
+    for (i = j = 0, len = listSource.length; j < len; i = ++j) {
+      source = listSource[i];
+      name = $.getBasename(source);
+      cont = listCont[i];
+      for (key in cont) {
+        value = cont[key];
+        if (!((ref = value.doc) != null ? ref.length : void 0)) {
+          listResult.push(`found no 'doc' in '${name}/${key}'`);
+        }
+        if (!((ref1 = value.mock) != null ? ref1.length : void 0)) {
+          listResult.push(`found no 'mock' in '${name}/${key}'`);
+        }
+        try {
+          data = (await axios[value.method](value.mock));
+          if (data.data.code !== 200) {
+            $.i(data.data);
+            throw new Error();
+          }
+        } catch (error) {
+          e = error;
+          listResult.push(`'mock' could not work in '${name}/${key}': '${value.url}'`);
+        }
+      }
+    }
+    if (!listResult.length) {
+      return this;
+    }
+    listResult = _.uniq(listResult);
+    for (k = 0, len1 = listResult.length; k < len1; k++) {
+      line = listResult[k];
+      $.info(line);
+    }
+    return this;
+  };
+
+}).call(this);

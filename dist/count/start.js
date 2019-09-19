@@ -1,1 +1,6 @@
-(function(){module.exports=function(){return["# 目录",""]}}).call(this);
+(function() {
+  module.exports = function() {
+    return ['# 目录', ''];
+  };
+
+}).call(this);

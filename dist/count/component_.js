@@ -1,1 +1,25 @@
-(function(){var e;e=require("fire-keeper"),module.exports=async function(n){var o,r,t,c,u,s,a;if(!n)return n;for((u=await e.source_(["./source/component/**/*.pug","!**/index.pug"])).sort(),o=[],t=0,c=u.length;t<c;t++)a=u[t],s=e.getBasename(a),r=e.getBasename(e.getDirname(a)),o=[...o,`- ${r}/${s}: [.pug](../source/component/${r}/${s}.pug) / [.styl](../source/component/${r}/${s}.styl) / [.coffee](../source/component/${r}/${s}.coffee)`];return[...n,"## 组件","",`共计${u.length}个组件。`,"",...o,""]}}).call(this);
+(function() {
+  var $;
+
+  $ = require('fire-keeper');
+
+  // return
+  module.exports = async function(cont) {
+    var _cont, dirname, i, len, listSource, name, source;
+    if (!cont) {
+      return cont;
+    }
+    listSource = (await $.source_(['./source/component/**/*.pug', '!**/index.pug']));
+    listSource.sort();
+    _cont = [];
+    for (i = 0, len = listSource.length; i < len; i++) {
+      source = listSource[i];
+      name = $.getBasename(source);
+      dirname = $.getBasename($.getDirname(source));
+      _cont = [..._cont, `- ${dirname}/${name}: [.pug](../source/component/${dirname}/${name}.pug) / [.styl](../source/component/${dirname}/${name}.styl) / [.coffee](../source/component/${dirname}/${name}.coffee)`];
+    }
+    // return
+    return [...cont, '## 组件', '', `共计${listSource.length}个组件。`, '', ..._cont, ''];
+  };
+
+}).call(this);

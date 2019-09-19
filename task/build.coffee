@@ -8,5 +8,6 @@ module.exports = ->
     './dist'
     './index.js'
   ]
-  .compile_ './source/**/*.coffee', './dist'
+  .compile_ './source/**/*.coffee', './dist',
+    minify: false
   .move_ './dist/index.js', './'

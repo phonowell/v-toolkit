@@ -1,6 +1,5 @@
 _ = require 'lodash'
 $ = require 'fire-keeper'
-path = require 'path'
 
 pug = require 'pug'
 coffee = require 'coffeescript'
@@ -9,12 +8,13 @@ coffee = require 'coffeescript'
 
 class M
 
-  constructor: (set = 'default') ->
+  constructor: (name = 'default') ->
 
     # inject
     for key in @feature
       do (key) =>
 
+        path = require 'path'
         @fn[key] = require path.resolve __dirname, key
 
         @[key] = (arg...) =>
@@ -24,11 +24,9 @@ class M
 
           @fn[key] arg...
 
-    # default
-    # enable all
-    if set == 'default'
-      for key in @feature
-        @enabled[key] = true
+    # feature
+    for key in @setFeature name
+      @enabled[key] = true
 
     @ # return
 
@@ -41,6 +39,7 @@ class M
   compilePug_(path)
   compileStyl_(path)
   compile_(path)
+  setFeature(key)
   ###
 
   enabled: {}
@@ -52,6 +51,7 @@ class M
     'injectFn'
     'injectLodash'
     'makeVariable'
+    'replaceNamespace'
     'replaceThrow'
     'signComponent'
     'signMethod'
@@ -79,9 +79,9 @@ class M
     contPug = await $.read_ path
     contPug = _.trim contPug or ''
 
-    if ~path.search 'index.pug'
-      contPug = @injectContainer contPug
+    contPug = @injectContainer contPug, path
     contPug = @injectComponentGlobal contPug
+    contPug = @replaceNamespace contPug, path
     contPug = @signComponent contPug
 
     contHtml = new String (pug.compile contPug)()
@@ -93,6 +93,7 @@ class M
     contStyl = await $.read_ path
     contStyl = _.trim contStyl or ''
 
+    contStyl = @replaceNamespace contStyl, path
     contStyl = @injectBasic contStyl
 
     contStyl = new String contStyl
@@ -162,6 +163,31 @@ class M
     $.info "made '#{pathTarget}'"
 
     @ # return
+
+  setFeature: (name) ->
+
+    listDisabled = switch name
+      
+      when 'disabled' then [
+        'injectComponentGlobal'
+        'injectContainer'
+        'replaceNamespace'
+      ]
+
+      when 'mp' then [
+        'replaceNamespace'
+      ]
+
+      when 'single' then [
+        'injectComponentGlobal'
+        'injectContainer'
+      ]
+
+      else throw new Error "compile/error: invalid name '#{name}'"
+
+    listFeature = [@feature...]
+    _.remove listFeature, (n) -> n in listDisabled
+    listFeature # return
 
 # return
 module.exports = (arg...) ->

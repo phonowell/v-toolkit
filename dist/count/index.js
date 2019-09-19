@@ -1,1 +1,61 @@
-(function(){var t,n,e;t=require("fire-keeper"),e=require("path"),n=function(){class n{constructor(){var t,n,a;for(t=0,n=(a=this.feature).length;t<n;t++)(t=>this.fn[t]=require(e.resolve(__dirname,t)))(a[t])}async count_(){var n;return n=this.fn.start(),n=await this.fn.api_(n),n=await this.fn.page_(n),n=await this.fn.component_(n),n=await this.fn.fn_(n),n=await this.fn.task_(n),n=this.fn.end(n),await t.write_("./doc/index.md",n.join("\n")),this}}return n.prototype.feature=["api_","component_","end","fn_","page_","start","task_"],n.prototype.fn={},n}.call(this),module.exports=function(...t){var e;return(e=new n(...t)).count_.bind(e)}}).call(this);
+(function() {
+  var $, M, path;
+
+  $ = require('fire-keeper');
+
+  path = require('path');
+
+  M = (function() {
+    // function
+    class M {
+      constructor() {
+        var i, key, len, ref;
+        ref = this.feature;
+        for (i = 0, len = ref.length; i < len; i++) {
+          key = ref[i];
+          ((key) => {
+            return this.fn[key] = require(path.resolve(__dirname, key));
+          })(key);
+        }
+        this; // return
+      }
+
+      // ---
+      async count_() {
+        var cont;
+        cont = this.fn.start();
+        cont = (await this.fn.api_(cont));
+        cont = (await this.fn.page_(cont));
+        cont = (await this.fn.component_(cont));
+        cont = (await this.fn.fn_(cont));
+        cont = (await this.fn.task_(cont));
+        cont = this.fn.end(cont);
+        await $.write_('./doc/index.md', cont.join('\n'));
+        return this;
+      }
+
+    };
+
+    /*
+    feature
+    fn
+    ---
+    count_()
+    */
+    M.prototype.feature = ['api_', 'component_', 'end', 'fn_', 'page_', 'start', 'task_'];
+
+    M.prototype.fn = {};
+
+    return M;
+
+  }).call(this);
+
+  
+  // return
+  module.exports = function(...arg) {
+    var m;
+    m = new M(...arg);
+    return m.count_.bind(m);
+  };
+
+}).call(this);

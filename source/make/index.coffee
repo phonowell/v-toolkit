@@ -20,6 +20,8 @@ class M
 
   feature: [
     'api_'
+    'component_'
+    'region_'
   ]
   fn: {}
 

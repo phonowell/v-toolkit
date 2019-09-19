@@ -1,1 +1,26 @@
-(function(){var e;e=require("fire-keeper"),module.exports=async function(){var a,r,t,i,o,n,l,c,d,s;for(c={},t=0,o=(l=await e.source_("./data/api/*.yaml")).length;t<o;t++)for(i in d=l[t],n=e.getBasename(d),r=await e.read_(d))delete(s=r[i]).doc,delete s.mock,c[`${n}/${i}`]=s;return a=`export default ${e.parseString(c)};`,await e.write_("./src/module/api.js",a)}}).call(this);
+(function() {
+  var $;
+
+  $ = require('fire-keeper');
+
+  // return
+  module.exports = async function() {
+    var contJs, data, i, key, len, name, ref, result, source, value;
+    result = {};
+    ref = (await $.source_('./data/api/*.yaml'));
+    for (i = 0, len = ref.length; i < len; i++) {
+      source = ref[i];
+      name = $.getBasename(source);
+      data = (await $.read_(source));
+      for (key in data) {
+        value = data[key];
+        delete value.doc;
+        delete value.mock;
+        result[`${name}/${key}`] = value;
+      }
+    }
+    contJs = `export default ${$.parseString(result)};`;
+    return (await $.write_('./src/module/api.js', contJs));
+  };
+
+}).call(this);

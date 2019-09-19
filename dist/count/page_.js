@@ -1,1 +1,24 @@
-(function(){var e;e=require("fire-keeper"),module.exports=async function(n){var o,r,t,c,u,i;if(!n)return n;for((c=await e.source_("./source/component/**/index.pug")).sort(),o=[],r=0,t=c.length;r<t;r++)i=c[r],u=e.getBasename(e.getDirname(i)),o=[...o,`- ${u}: [.pug](../source/component/${u}/index.pug) / [.styl](../source/component/${u}/index.styl) / [.coffee](../source/component/${u}/index.coffee)`];return[...n,"## 页面","",`共计${c.length}个页面。`,"",...o,""]}}).call(this);
+(function() {
+  var $;
+
+  $ = require('fire-keeper');
+
+  // return
+  module.exports = async function(cont) {
+    var _cont, i, len, listSource, name, source;
+    if (!cont) {
+      return cont;
+    }
+    listSource = (await $.source_('./source/component/**/index.pug'));
+    listSource.sort();
+    _cont = [];
+    for (i = 0, len = listSource.length; i < len; i++) {
+      source = listSource[i];
+      name = $.getBasename($.getDirname(source));
+      _cont = [..._cont, `- ${name}: [.pug](../source/component/${name}/index.pug) / [.styl](../source/component/${name}/index.styl) / [.coffee](../source/component/${name}/index.coffee)`];
+    }
+    // return
+    return [...cont, '## 页面', '', `共计${listSource.length}个页面。`, '', ..._cont, ''];
+  };
+
+}).call(this);

@@ -28,8 +28,7 @@ class M
 
   replace_: (key, arg...) ->
 
-    unless key
-      return @fn.replace_
+    key or= 'replace'
 
     await @fn["#{key}_"] arg...
     @ # return

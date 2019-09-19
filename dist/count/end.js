@@ -1,1 +1,13 @@
-(function(){module.exports=function(t){var e,n;return t?(n=[(e=new Date).getFullYear(),1+e.getMonth(),e.getDate()].join("/"),[...t,`**本章节内容最后更新于\`${n}\`。**`,""]):t}}).call(this);
+(function() {
+  module.exports = function(cont) {
+    var date, string;
+    if (!cont) {
+      return cont;
+    }
+    date = new Date();
+    string = [date.getFullYear(), 1 + date.getMonth(), date.getDate()].join('/');
+    // return
+    return [...cont, `**本章节内容最后更新于\`${string}\`。**`, ''];
+  };
+
+}).call(this);

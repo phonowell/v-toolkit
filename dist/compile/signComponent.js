@@ -1,1 +1,25 @@
-(function(){var n;n=require("lodash"),module.exports=function(e){var r;return e?~e.search(/inject = '/)?(r=[],e=e.replace(/inject = '(.*?)'/g,function(n,e){return r.push(e),""}),r=n.uniq(r),(e=new String(e)).component=r,e):e:""}}).call(this);
+(function() {
+  var _;
+
+  _ = require('lodash');
+
+  module.exports = function(cont) {
+    var listReplace;
+    if (!cont) {
+      return '';
+    }
+    if (!~cont.search(/inject = '/)) {
+      return cont;
+    }
+    listReplace = [];
+    cont = cont.replace(/inject = '(.*?)'/g, function(text, string) {
+      listReplace.push(string);
+      return ''; // return
+    });
+    listReplace = _.uniq(listReplace);
+    cont = new String(cont);
+    cont.component = listReplace;
+    return cont; // return
+  };
+
+}).call(this);

@@ -1,1 +1,15 @@
-(function(){var e;e=require("fire-keeper"),module.exports=function(r){var a,t;return t=e.getDirname(r),{basename:a=e.getBasename(r),pathSource:t,pathTarget:[t.replace(/\/source/,"/src"),"/",a,".vue"].join("")}}}).call(this);
+(function() {
+  var $;
+
+  $ = require('fire-keeper');
+
+  module.exports = function(path) {
+    var basename, pathSource, pathTarget;
+    pathSource = $.getDirname(path);
+    basename = $.getBasename(path);
+    pathTarget = [pathSource.replace(/\/source/, '/src'), '/', basename, '.vue'].join('');
+    // return
+    return {basename, pathSource, pathTarget};
+  };
+
+}).call(this);

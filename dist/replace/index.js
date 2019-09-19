@@ -1,1 +1,54 @@
-(function(){var e,r;require("fire-keeper"),r=require("path"),e=function(){class e{constructor(){var e,t,n;for(e=0,t=(n=this.feature).length;e<t;e++)(e=>this.fn[e]=require(r.resolve(__dirname,e)))(n[e])}async replace_(e,...r){return e?(await this.fn[`${e}_`](...r),this):this.fn.replace_}}return e.prototype.feature=["config_","replace_"],e.prototype.fn={},e}.call(this),module.exports=function(...r){var t;return(t=new e(...r)).replace_.bind(t)}}).call(this);
+(function() {
+  var $, M, path;
+
+  $ = require('fire-keeper');
+
+  path = require('path');
+
+  M = (function() {
+    // function
+    class M {
+      constructor() {
+        var i, key, len, ref;
+        ref = this.feature;
+        for (i = 0, len = ref.length; i < len; i++) {
+          key = ref[i];
+          ((key) => {
+            return this.fn[key] = require(path.resolve(__dirname, key));
+          })(key);
+        }
+        this; // return
+      }
+
+      // ---
+      async replace_(key, ...arg) {
+        key || (key = 'replace');
+        await this.fn[`${key}_`](...arg);
+        return this;
+      }
+
+    };
+
+    /*
+    feature
+    fn
+    ---
+    replace_(key)
+    */
+    M.prototype.feature = ['config_', 'replace_'];
+
+    M.prototype.fn = {};
+
+    return M;
+
+  }).call(this);
+
+  
+  // return
+  module.exports = function(...arg) {
+    var m;
+    m = new M(...arg);
+    return m.replace_.bind(m);
+  };
+
+}).call(this);

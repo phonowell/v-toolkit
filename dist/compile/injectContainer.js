@@ -1,1 +1,29 @@
-(function(){module.exports=function(n){var t;return[".page",...function(){var r,o,u,e;for(e=[],r=0,o=(u=n.split("\n")).length;r<o;r++)t=u[r],e.push(`  ${t}`);return e}()].join("\n")}}).call(this);
+(function() {
+  module.exports = function(cont, path) {
+    var line;
+    if (!~path.search('index.pug')) {
+      return cont;
+    }
+    if (!cont) {
+      return '';
+    }
+    return [
+      // return
+      '.page',
+      ...((function() {
+        var i,
+      len,
+      ref,
+      results;
+        ref = cont.split('\n');
+        results = [];
+        for (i = 0, len = ref.length; i < len; i++) {
+          line = ref[i];
+          results.push(`  ${line}`);
+        }
+        return results;
+      })())
+    ].join('\n');
+  };
+
+}).call(this);

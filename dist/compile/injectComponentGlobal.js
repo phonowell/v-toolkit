@@ -1,1 +1,20 @@
-(function(){module.exports=function(n){var t,o,i;for(t=0,o=(i=["router-link","thumb"]).length;t<o;t++)!function(t){if(~n.search(t))n=[`//- inject = '${t} global/${t}'`,n].join("\n")}(i[t]);return n}}).call(this);
+(function() {
+  module.exports = function(cont) {
+    var i, key, len, ref;
+    if (!cont) {
+      return '';
+    }
+    ref = ['router-link', 'thumb'];
+    for (i = 0, len = ref.length; i < len; i++) {
+      key = ref[i];
+      (function(key) {
+        if (!~cont.search(key)) {
+          return;
+        }
+        return cont = [`//- inject = '${key} global/${key}'`, cont].join('\n');
+      })(key);
+    }
+    return cont; // return
+  };
+
+}).call(this);

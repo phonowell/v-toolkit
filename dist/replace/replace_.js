@@ -1,1 +1,24 @@
-(function(){var r;r=require("fire-keeper"),module.exports=async function(e,i){var t,n;if("string"!==(n=r.type(e)))throw new Error(`invalid type '${n}'`);if("function"!==(n=r.type(i)))throw new Error(`invalid type '${n}'`);return t=i(t=await r.read_(e)),await r.write_(e,t)}}).call(this);
+(function() {
+  var $;
+
+  $ = require('fire-keeper');
+
+  // return
+  module.exports = async function(string, fn) {
+    var cont, type;
+    // check type
+    type = $.type(string);
+    if (type !== 'string') {
+      throw new Error(`invalid type '${type}'`);
+    }
+    type = $.type(fn);
+    if (type !== 'function') {
+      throw new Error(`invalid type '${type}'`);
+    }
+    cont = (await $.read_(string));
+    cont = fn(cont);
+    // write
+    return (await $.write_(string, cont));
+  };
+
+}).call(this);
