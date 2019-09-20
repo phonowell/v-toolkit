@@ -8,7 +8,7 @@ coffee = require 'coffeescript'
 
 class M
 
-  constructor: (name = 'default') ->
+  constructor: (@name = 'default') ->
 
     # inject
     for key in @feature
@@ -81,7 +81,7 @@ class M
     contPug = await $.read_ path
     contPug = _.trim contPug or ''
 
-    contPug = @injectContainer contPug, path
+    contPug = @injectContainer contPug, path, @name
     contPug = @injectComponentGlobal contPug
     contPug = @replaceNamespace contPug, path
     contPug = @signComponent contPug
@@ -184,7 +184,6 @@ class M
 
       when 'single' then [
         'injectComponentGlobal'
-        'injectContainer'
       ]
 
       else throw new Error "compile/error: invalid name '#{name}'"

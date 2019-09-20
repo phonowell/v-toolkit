@@ -13,8 +13,9 @@
   M = (function() {
     // function
     class M {
-      constructor(name = 'default') {
+      constructor(name1 = 'default') {
         var i, j, key, len, len1, ref, ref1;
+        this.name = name1;
         ref = this.feature;
         // inject
         for (i = 0, len = ref.length; i < len; i++) {
@@ -59,7 +60,7 @@
         var contHtml, contPug;
         contPug = (await $.read_(path));
         contPug = _.trim(contPug || '');
-        contPug = this.injectContainer(contPug, path);
+        contPug = this.injectContainer(contPug, path, this.name);
         contPug = this.injectComponentGlobal(contPug);
         contPug = this.replaceNamespace(contPug, path);
         contPug = this.signComponent(contPug);
@@ -123,7 +124,7 @@
             case 'mp':
               return ['replaceNamespace', 'signEnter'];
             case 'single':
-              return ['injectComponentGlobal', 'injectContainer'];
+              return ['injectComponentGlobal'];
             default:
               throw new Error(`compile/error: invalid name '${name}'`);
           }

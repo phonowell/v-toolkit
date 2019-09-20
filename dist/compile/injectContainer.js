@@ -1,15 +1,34 @@
 (function() {
-  module.exports = function(cont, path) {
-    var line;
+  module.exports = function(cont, path, type) {
+    var container, line;
+    if (!~path.search('component')) {
+      return cont;
+    }
     if (!~path.search('index.pug')) {
       return cont;
     }
     if (!cont) {
       return '';
     }
+    if (~cont.search('page#page')) {
+      return cont;
+    }
+    if (~cont.search('.page')) {
+      return cont;
+    }
+    container = (function() {
+      switch (type) {
+        case 'single':
+          return 'page#page';
+        case 'mp':
+          return '.page';
+        default:
+          throw new Error(`injectContainer/error: invalid type ${type}`);
+      }
+    })();
     return [
       // return
-      '.page',
+      container,
       ...((function() {
         var i,
       len,
