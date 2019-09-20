@@ -10,22 +10,16 @@
     if (!cont) {
       return '';
     }
-    if (~cont.search('page#page')) {
-      return cont;
-    }
-    if (~cont.search('.page')) {
-      return cont;
-    }
-    container = (function() {
-      switch (type) {
-        case 'single':
-          return 'page#page';
-        case 'mp':
-          return '.page';
-        default:
-          throw new Error(`injectContainer/error: invalid type ${type}`);
+    if (type === 'mp') {
+      container = '.page';
+    } else if (type === 'single') {
+      container = 'page#page';
+      if (~cont.search(container)) {
+        return cont;
       }
-    })();
+    } else {
+      throw new Error(`injectContainer/error: invalid type ${type}`);
+    }
     return [
       // return
       container,

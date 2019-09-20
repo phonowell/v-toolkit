@@ -32,7 +32,7 @@
             };
           })(key);
         }
-        ref1 = this.setFeature(name);
+        ref1 = this.setFeature(this.name);
         // feature
         for (j = 0, len1 = ref1.length; j < len1; j++) {
           key = ref1[j];
@@ -87,9 +87,13 @@
         if (type !== 'string') {
           throw new Error(`compiler/error: invalid type of path: '${type}'`);
         }
+        // check path
+        if (!(await $.isExisted_(path))) {
+          throw new Error(`compiler/error: invalid path: '${path}'`);
+        }
         // variable
         ({basename, pathSource, pathTarget} = this.makeVariable(path));
-        $.info().pause();
+        // $.info().pause()
         contJson = (await $.read_(`${pathSource}/${basename}.yaml`));
         contHtml = (await this.compilePug_(`${pathSource}/${basename}.pug`));
         contStyl = (await this.compileStyl_(`${pathSource}/${basename}.styl`));

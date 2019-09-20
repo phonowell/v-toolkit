@@ -25,7 +25,7 @@ class M
           @fn[key] arg...
 
     # feature
-    for key in @setFeature name
+    for key in @setFeature @name
       @enabled[key] = true
 
     @ # return
@@ -109,6 +109,10 @@ class M
     type = $.type path
     unless type == 'string'
       throw new Error "compiler/error: invalid type of path: '#{type}'"
+
+    # check path
+    unless await $.isExisted_ path
+      throw new Error "compiler/error: invalid path: '#{path}'"
 
     # variable
     {basename, pathSource, pathTarget} = @makeVariable path

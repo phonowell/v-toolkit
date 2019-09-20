@@ -9,16 +9,15 @@ module.exports = (cont, path, type) ->
   unless cont
     return ''
 
-  if ~cont.search 'page#page'
-    return cont
+  if type == 'mp'
+    container = '.page'
 
-  if ~cont.search '.page'
-    return cont
+  else if type == 'single'
+    container = 'page#page'
+    if ~cont.search container
+      return cont
 
-  container = switch type
-    when 'single' then 'page#page'
-    when 'mp' then '.page'
-    else throw new Error "injectContainer/error: invalid type #{type}"
+  else throw new Error "injectContainer/error: invalid type #{type}"
 
   # return
   [
