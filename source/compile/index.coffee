@@ -54,6 +54,7 @@ class M
     'replaceNamespace'
     'replaceThrow'
     'signComponent'
+    'signEnter'
     'signMethod'
   ]
   fn: {}
@@ -65,6 +66,7 @@ class M
     contCoffee = await $.read_ path
     contCoffee = _.trim contCoffee or ''
 
+    contCoffee = @signEnter contCoffee, path
     contCoffee = @signMethod contCoffee, path
     contCoffee = @injectLodash contCoffee
     contCoffee = @injectFn contCoffee
@@ -168,14 +170,16 @@ class M
 
     listDisabled = switch name
       
-      when 'disabled' then [
+      when 'default' then [
         'injectComponentGlobal'
         'injectContainer'
         'replaceNamespace'
+        'signEnter'
       ]
 
       when 'mp' then [
         'replaceNamespace'
+        'signEnter'
       ]
 
       when 'single' then [
