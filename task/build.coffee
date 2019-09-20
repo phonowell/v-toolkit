@@ -11,3 +11,5 @@ module.exports = ->
   .compile_ './source/**/*.coffee', './dist',
     minify: false
   .move_ './dist/index.js', './'
+
+  await $.exec_ 'git add -f ./dist/**/*.js'

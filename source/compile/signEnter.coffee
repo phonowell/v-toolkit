@@ -3,7 +3,7 @@ module.exports = (cont, path) ->
   unless ~path.search 'component'
     return cont
 
-  unless ~path.search 'index.'
+  unless ~path.search 'index.coffee'
     return cont
 
   unless cont
@@ -16,5 +16,5 @@ module.exports = (cont, path) ->
   [
     cont
     '  beforeRouteEnter: (to, from, next) ->'
-    '    next (vm) -> vm.enter to, from'
+    '    next (vm) -> vm.enter? to, from'
   ].join '\n'
