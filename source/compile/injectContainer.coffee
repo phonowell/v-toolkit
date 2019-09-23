@@ -12,7 +12,7 @@ module.exports = (cont, path, type) ->
   if type == 'mp'
     container = '.page'
 
-  else if type == 'single'
+  else if type == 'spa'
     container = 'page#page'
     if ~cont.search container
       return cont

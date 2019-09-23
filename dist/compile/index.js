@@ -46,7 +46,7 @@
         var contCoffee;
         contCoffee = (await $.read_(path));
         contCoffee = _.trim(contCoffee || '');
-        contCoffee = this.signEnter(contCoffee, path);
+        contCoffee = this.signEnter(contCoffee, path, this.name);
         contCoffee = this.signMethod(contCoffee, path);
         contCoffee = this.injectLodash(contCoffee);
         contCoffee = this.injectFn(contCoffee);
@@ -93,7 +93,7 @@
         }
         // variable
         ({basename, pathSource, pathTarget} = this.makeVariable(path));
-        // $.info().pause()
+        $.info().pause();
         contJson = (await $.read_(`${pathSource}/${basename}.yaml`));
         contHtml = (await this.compilePug_(`${pathSource}/${basename}.pug`));
         contStyl = (await this.compileStyl_(`${pathSource}/${basename}.styl`));
@@ -126,8 +126,8 @@
             case 'default':
               return ['injectComponentGlobal', 'injectContainer', 'replaceNamespace', 'signEnter'];
             case 'mp':
-              return ['replaceNamespace', 'signEnter'];
-            case 'single':
+              return ['replaceNamespace'];
+            case 'spa':
               return ['injectComponentGlobal'];
             default:
               throw new Error(`compile/error: invalid name '${name}'`);

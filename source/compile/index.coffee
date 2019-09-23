@@ -66,7 +66,7 @@ class M
     contCoffee = await $.read_ path
     contCoffee = _.trim contCoffee or ''
 
-    contCoffee = @signEnter contCoffee, path
+    contCoffee = @signEnter contCoffee, path, @name
     contCoffee = @signMethod contCoffee, path
     contCoffee = @injectLodash contCoffee
     contCoffee = @injectFn contCoffee
@@ -183,10 +183,9 @@ class M
 
       when 'mp' then [
         'replaceNamespace'
-        'signEnter'
       ]
 
-      when 'single' then [
+      when 'spa' then [
         'injectComponentGlobal'
       ]
 
