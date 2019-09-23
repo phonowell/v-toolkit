@@ -4,7 +4,7 @@
       return '';
     }
     // return
-    return ["@import '~@/copies/basic'", cont].join('\n');
+    return ["@import '~@/include/basic'", cont].join('\n');
   };
 
 }).call(this);

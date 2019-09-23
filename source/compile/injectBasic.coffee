@@ -5,6 +5,6 @@ module.exports = (cont) ->
 
   # return
   [
-    "@import '~@/copies/basic'"
+    "@import '~@/include/basic'"
     cont
   ].join '\n'
