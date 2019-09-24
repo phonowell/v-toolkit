@@ -21,18 +21,32 @@ class M
   feature: [
     'api_'
     'await_'
+    'class_'
     'spell_'
   ]
   fn: {}
 
   # ---
 
-  check_: ->
+  check_: (feature) ->
 
-    await $.chain @fn
-    .spell_()
-    .await_()
-    .api_()
+    type = $.type feature
+    if type == 'string'
+      feature = [feature]
+
+    for name in feature or @feature
+      await do (name) =>
+      
+        unless name
+          return
+
+        unless name.endsWith '_'
+          name = "#{name}_"
+        
+        unless fn_ = @fn[name]
+          return
+        
+        await fn_()
 
     @ # return
 

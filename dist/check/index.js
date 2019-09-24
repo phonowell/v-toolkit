@@ -21,8 +21,29 @@
       }
 
       // ---
-      async check_() {
-        await $.chain(this.fn).spell_().await_().api_();
+      async check_(feature) {
+        var i, len, name, ref, type;
+        type = $.type(feature);
+        if (type === 'string') {
+          feature = [feature];
+        }
+        ref = feature || this.feature;
+        for (i = 0, len = ref.length; i < len; i++) {
+          name = ref[i];
+          await (async(name) => {
+            var fn_;
+            if (!name) {
+              return;
+            }
+            if (!name.endsWith('_')) {
+              name = `${name}_`;
+            }
+            if (!(fn_ = this.fn[name])) {
+              return;
+            }
+            return (await fn_());
+          })(name);
+        }
         return this;
       }
 
@@ -34,7 +55,7 @@
     ---
     check_()
     */
-    M.prototype.feature = ['api_', 'await_', 'spell_'];
+    M.prototype.feature = ['api_', 'await_', 'class_', 'spell_'];
 
     M.prototype.fn = {};
 

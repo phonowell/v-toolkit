@@ -16,7 +16,7 @@ module.exports = (cont, path) ->
   # return
   cont.replace /(#[\w-]+)/g, (string) ->
 
-    if (parseInt string[1...], 16) >= 0
+    unless string[1...].replace /[0123456789abcdef]/g, ''
       return string
 
     "#{string}-#{basename}"

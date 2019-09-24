@@ -17,7 +17,7 @@
     basename = $.getBasename($.getDirname(path));
     // return
     return cont.replace(/(#[\w-]+)/g, function(string) {
-      if ((parseInt(string.slice(1), 16)) >= 0) {
+      if (!string.slice(1).replace(/[0123456789abcdef]/g, '')) {
         return string;
       }
       return `${string}-${basename}`;
