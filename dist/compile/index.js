@@ -47,6 +47,7 @@
         contCoffee = (await $.read_(path));
         contCoffee = _.trim(contCoffee || '');
         contCoffee = this.signEnter(contCoffee, path, this.name);
+        contCoffee = this.signLeave(contCoffee, path, this.name);
         contCoffee = this.signMethod(contCoffee, path);
         contCoffee = this.injectLodash(contCoffee);
         contCoffee = this.injectFn(contCoffee);
@@ -124,7 +125,7 @@
         listDisabled = (function() {
           switch (name) {
             case 'default':
-              return ['injectComponentGlobal', 'injectContainer', 'replaceNamespace', 'signEnter'];
+              return ['injectComponentGlobal', 'injectContainer', 'replaceNamespace'];
             case 'mp':
               return ['replaceNamespace'];
             case 'spa':
@@ -155,7 +156,7 @@
     */
     M.prototype.enabled = {};
 
-    M.prototype.feature = ['injectBasic', 'injectComponent', 'injectComponentGlobal', 'injectContainer', 'injectFn', 'injectLodash', 'makeVariable', 'replaceNamespace', 'replaceThrow', 'signComponent', 'signEnter', 'signMethod'];
+    M.prototype.feature = ['injectBasic', 'injectComponent', 'injectComponentGlobal', 'injectContainer', 'injectFn', 'injectLodash', 'makeVariable', 'replaceNamespace', 'replaceThrow', 'signComponent', 'signEnter', 'signLeave', 'signMethod'];
 
     M.prototype.fn = {};
 

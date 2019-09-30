@@ -55,6 +55,7 @@ class M
     'replaceThrow'
     'signComponent'
     'signEnter'
+    'signLeave'
     'signMethod'
   ]
   fn: {}
@@ -67,6 +68,7 @@ class M
     contCoffee = _.trim contCoffee or ''
 
     contCoffee = @signEnter contCoffee, path, @name
+    contCoffee = @signLeave contCoffee, path, @name
     contCoffee = @signMethod contCoffee, path
     contCoffee = @injectLodash contCoffee
     contCoffee = @injectFn contCoffee
@@ -178,7 +180,6 @@ class M
         'injectComponentGlobal'
         'injectContainer'
         'replaceNamespace'
-        'signEnter'
       ]
 
       when 'mp' then [

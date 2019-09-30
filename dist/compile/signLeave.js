@@ -3,25 +3,25 @@
   var signMp, signSpa;
 
   signSpa = function(cont) {
-    if (~cont.search('beforeRouteEnter:')) {
+    if (~cont.search('beforeRouteLeave:')) {
       return cont;
     }
-    if (!~cont.search('enter =')) {
+    if (!~cont.search('leave =')) {
       return cont;
     }
     // return
-    return [cont, '  beforeRouteEnter: (to, from, next) ->', '    next (vm) -> vm.enter? to, from'].join('\n');
+    return [cont, '  beforeRouteLeave: (to, from, next) ->', '    await @leave? to, from', '    next()'].join('\n');
   };
 
   signMp = function(cont) {
-    if (~cont.search('onShow:')) {
+    if (~cont.search('onHide:')) {
       return cont;
     }
-    if (!~cont.search('enter =')) {
+    if (!~cont.search('leave =')) {
       return cont;
     }
     // return
-    return [cont, '  onShow: -> @enter?()'].join('\n');
+    return [cont, '  onHide: -> @leave?()'].join('\n');
   };
 
   // return
@@ -42,7 +42,7 @@
       case 'mp':
         return signMp(cont);
       default:
-        throw new Error(`signEnter/error: invalid type '${type}'`);
+        throw new Error(`signLeave/error: invalid type '${type}'`);
     }
   };
 

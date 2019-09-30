@@ -2,31 +2,32 @@
 
 signSpa = (cont) ->
 
-  if ~cont.search 'beforeRouteEnter:'
+  if ~cont.search 'beforeRouteLeave:'
     return cont
 
-  unless ~cont.search 'enter ='
+  unless ~cont.search 'leave ='
     return cont
 
   # return
   [
     cont
-    '  beforeRouteEnter: (to, from, next) ->'
-    '    next (vm) -> vm.enter? to, from'
+    '  beforeRouteLeave: (to, from, next) ->'
+    '    await @leave? to, from'
+    '    next()'
   ].join '\n'
 
 signMp = (cont) ->
 
-  if ~cont.search 'onShow:'
+  if ~cont.search 'onHide:'
     return cont
 
-  unless ~cont.search 'enter ='
+  unless ~cont.search 'leave ='
     return cont
 
   # return
   [
     cont
-    '  onShow: -> @enter?()'
+    '  onHide: -> @leave?()'
   ].join '\n'
 
 # return
@@ -45,4 +46,4 @@ module.exports = (cont, path, type) ->
   switch type
     when 'spa' then signSpa cont
     when 'mp' then signMp cont
-    else throw new Error "signEnter/error: invalid type '#{type}'"
+    else throw new Error "signLeave/error: invalid type '#{type}'"

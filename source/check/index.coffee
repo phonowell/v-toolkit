@@ -23,6 +23,7 @@ class M
     'await_'
     'class_'
     'spell_'
+    'throw_'
   ]
   fn: {}
 
