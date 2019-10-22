@@ -10,7 +10,7 @@
   "scripts": {
     "test": "mocha"
   },
-  "version": "0.0.10",
+  "version": "0.0.11",
   "homepage": "https://github.com/phonowell/v-toolkit",
   "keywords": [
     "v-toolkit"
@@ -22,6 +22,6 @@
   "description": "v-toolkit server",
   "dependencies": {
     "axios": "^0.19.0",
-    "fire-keeper": "0.0.165"
+    "fire-keeper": "0.0.166"
   }
 }
