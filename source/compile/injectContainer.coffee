@@ -21,6 +21,6 @@ module.exports = (cont, path, type) ->
 
   # return
   [
-    container
+    "#{container}(ref = 'page')"
     ("  #{line}" for line in cont.split '\n')...
   ].join '\n'

@@ -1,3 +1,4 @@
+_ = require 'lodash'
 $ = require 'fire-keeper'
 
 # return
@@ -7,7 +8,7 @@ module.exports = ->
 
   $.info().pause()
 
-  listFn = await $.source_ './source/fn/*.coffee'
+  listFn = await $.source_ './source/function/*.coffee'
   listFn = ($.getBasename source for source in listFn)
 
   listSource = await $.source_ './source/**/*.coffee'

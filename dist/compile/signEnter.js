@@ -10,7 +10,7 @@
       return cont;
     }
     // return
-    return [cont, '  beforeRouteEnter: (to, from, next) ->', '    next (vm) -> vm.enter? to, from'].join('\n');
+    return [cont, '  beforeRouteEnter: (to, from, next) ->', '    next (vm) ->', '      vm.$refs.page.enter()', '      vm.enter? to, from'].join('\n');
   };
 
   signMp = function(cont) {

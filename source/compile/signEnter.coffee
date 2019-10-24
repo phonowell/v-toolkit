@@ -12,7 +12,9 @@ signSpa = (cont) ->
   [
     cont
     '  beforeRouteEnter: (to, from, next) ->'
-    '    next (vm) -> vm.enter? to, from'
+    '    next (vm) ->'
+    '      vm.$refs.page.enter()'
+    '      vm.enter? to, from'
   ].join '\n'
 
 signMp = (cont) ->

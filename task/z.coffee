@@ -7,4 +7,4 @@ check_ = vt 'check'
 # return
 module.exports = ->
   
-  await check_ 'throw'
+  await check_ 'spell'

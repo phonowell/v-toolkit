@@ -13,6 +13,7 @@ signSpa = (cont) ->
     cont
     '  beforeRouteLeave: (to, from, next) ->'
     '    await @leave? to, from'
+    '    @$refs.page.leave()'
     '    next()'
   ].join '\n'
 

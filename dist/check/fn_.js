@@ -1,5 +1,7 @@
 (function() {
-  var $;
+  var $, _;
+
+  _ = require('lodash');
 
   $ = require('fire-keeper');
 
@@ -8,7 +10,7 @@
     var cont, fn, i, isUsed, j, k, len, len1, len2, line, listCont, listFn, listResult, listSource, source;
     $.info("check 'fn'");
     $.info().pause();
-    listFn = (await $.source_('./source/fn/*.coffee'));
+    listFn = (await $.source_('./source/function/*.coffee'));
     listFn = (function() {
       var i, len, results;
       results = [];

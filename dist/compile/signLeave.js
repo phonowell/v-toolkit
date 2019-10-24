@@ -10,7 +10,7 @@
       return cont;
     }
     // return
-    return [cont, '  beforeRouteLeave: (to, from, next) ->', '    await @leave? to, from', '    next()'].join('\n');
+    return [cont, '  beforeRouteLeave: (to, from, next) ->', '    await @leave? to, from', '    @$refs.page.leave()', '    next()'].join('\n');
   };
 
   signMp = function(cont) {

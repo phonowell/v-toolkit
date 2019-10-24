@@ -22,7 +22,7 @@
     }
     return [
       // return
-      container,
+      `${container}(ref = 'page')`,
       ...((function() {
         var i,
       len,
