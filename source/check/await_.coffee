@@ -30,7 +30,7 @@ check = (line) ->
   unless ~line.search /\w+\_[\s\(]/
     return true
 
-  unless ~line.search 'await'
+  unless line.includes 'await'
     return false
 
   true

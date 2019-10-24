@@ -2,10 +2,10 @@
 
 signSpa = (cont) ->
 
-  if ~cont.search 'beforeRouteEnter:'
+  if cont.includes 'beforeRouteEnter:'
     return cont
 
-  unless ~cont.search 'enter ='
+  unless cont.includes 'enter ='
     return cont
 
   # return
@@ -17,10 +17,10 @@ signSpa = (cont) ->
 
 signMp = (cont) ->
 
-  if ~cont.search 'onShow:'
+  if cont.includes 'onShow:'
     return cont
 
-  unless ~cont.search 'enter ='
+  unless cont.includes 'enter ='
     return cont
 
   # return
@@ -32,10 +32,10 @@ signMp = (cont) ->
 # return
 module.exports = (cont, path, type) ->
 
-  unless ~path.search 'component'
+  unless path.includes 'component'
     return cont
 
-  unless ~path.search 'index.coffee'
+  unless path.includes 'index.coffee'
     return cont
 
   unless cont

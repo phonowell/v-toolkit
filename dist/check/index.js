@@ -55,7 +55,7 @@
     ---
     check_()
     */
-    M.prototype.feature = ['api_', 'await_', 'class_', 'spell_', 'throw_'];
+    M.prototype.feature = ['api_', 'await_', 'class_', 'fn_', 'spell_', 'throw_'];
 
     M.prototype.fn = {};
 

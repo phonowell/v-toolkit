@@ -1,12 +1,12 @@
 module.exports = (cont, path) ->
 
-  unless ~path.search 'component'
+  unless path.includes 'component'
     return cont
 
   unless cont
     return ''
 
-  if ~cont.search 'methods:'
+  if cont.includes 'methods:'
     return cont
 
   unless ~cont.search /\w+ = .*\-\>/

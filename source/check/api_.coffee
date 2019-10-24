@@ -37,6 +37,8 @@ module.exports = ->
         listResult.push "'mock' could not work in '#{name}/#{key}':
         '#{value.url}'"
 
+  # report
+
   unless listResult.length
     return @
 

@@ -1,10 +1,10 @@
 (function() {
   module.exports = function(cont, path, type) {
     var container, line;
-    if (!~path.search('component')) {
+    if (!path.includes('component')) {
       return cont;
     }
-    if (!~path.search('index.pug')) {
+    if (!path.includes('index.pug')) {
       return cont;
     }
     if (!cont) {
@@ -14,7 +14,7 @@
       container = '.page';
     } else if (type === 'spa') {
       container = 'page#page';
-      if (~cont.search(container)) {
+      if (cont.includes(container)) {
         return cont;
       }
     } else {

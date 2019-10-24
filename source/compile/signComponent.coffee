@@ -5,7 +5,7 @@ module.exports = (cont) ->
     unless cont
       return ''
 
-    unless ~cont.search /inject = '/
+    unless cont.includes "inject = '"
       return cont
 
     listReplace = []

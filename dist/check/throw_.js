@@ -25,13 +25,16 @@
     for (i = j = 0, len = listSource.length; j < len; i = ++j) {
       source = listSource[i];
       cont = listCont[i];
-      if (!~cont.search('throw')) {
+      if (!cont.includes('throw ')) {
         continue;
       }
-      if (!~cont.search('try')) {
+      if (cont.includes('throw new Error')) {
+        continue;
+      }
+      if (!cont.includes('try')) {
         listResult.push(source);
       }
-      if (!~cont.search('catch')) {
+      if (!cont.includes('catch')) {
         listResult.push(source);
       }
     }

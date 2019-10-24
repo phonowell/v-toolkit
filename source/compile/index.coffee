@@ -51,8 +51,9 @@ class M
     'injectFn'
     'injectLodash'
     'makeVariable'
+    'replaceError'
+    'replaceExport'
     'replaceNamespace'
-    'replaceThrow'
     'signComponent'
     'signEnter'
     'signLeave'
@@ -73,7 +74,8 @@ class M
     contCoffee = @injectLodash contCoffee
     contCoffee = @injectFn contCoffee
     contCoffee = @injectComponent contCoffee, option.component
-    contCoffee = @replaceThrow contCoffee
+    contCoffee = @replaceError contCoffee
+    contCoffee = @replaceExport contCoffee
 
     # return
     coffee.compile contCoffee

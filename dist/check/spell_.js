@@ -30,7 +30,7 @@
       cont = listCont[i];
       for (k = 0, len1 = data.length; k < len1; k++) {
         rule = data[k];
-        if (~cont.search(rule)) {
+        if (cont.includes(rule)) {
           listResult.push(`found '${rule}' in '${source}'`);
         }
       }

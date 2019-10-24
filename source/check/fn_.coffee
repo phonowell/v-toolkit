@@ -1,33 +1,36 @@
-_ = require 'lodash'
 $ = require 'fire-keeper'
 
 # return
 module.exports = ->
 
-  $.info "check 'throw'"
+  $.info "check 'fn'"
 
   $.info().pause()
+
+  listFn = await $.source_ './source/fn/*.coffee'
+  listFn = ($.getBasename source for source in listFn)
+
   listSource = await $.source_ './source/**/*.coffee'
   listCont = (await $.read_ source for source in listSource)
+
   $.info().resume()
 
   listResult = []
 
-  for source, i in listSource
+  for fn in listFn
 
-    cont = listCont[i]
+    isUsed = false
 
-    unless cont.includes 'throw '
-      continue
+    for cont in listCont
 
-    if cont.includes 'throw new Error'
-      continue
+      if cont.includes "$.#{fn}"
+        isUsed = true
+        break
 
-    unless cont.includes 'try'
-      listResult.push source
+    unless isUsed
+      listResult.push "'$.#{fn}' is not used"
 
-    unless cont.includes 'catch'
-      listResult.push source
+  # report
 
   unless listResult.length
     return @

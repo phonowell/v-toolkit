@@ -2,10 +2,10 @@ $ = require 'fire-keeper'
 
 module.exports = (cont, path) ->
 
-  unless ~path.search 'component'
+  unless path.includes 'component'
     return cont
 
-  unless ~path.search 'index.'
+  unless path.includes 'index.'
     return cont
 
   unless cont

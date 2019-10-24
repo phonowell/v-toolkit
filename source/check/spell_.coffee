@@ -28,7 +28,7 @@ module.exports = ->
     cont = listCont[i]
 
     for rule in data
-      if ~cont.search rule
+      if cont.includes rule
         listResult.push "found '#{rule}' in '#{source}'"
 
   unless listResult.length

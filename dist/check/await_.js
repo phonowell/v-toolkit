@@ -28,7 +28,7 @@
     if (!~line.search(/\w+\_[\s\(]/)) {
       return true;
     }
-    if (!~line.search('await')) {
+    if (!line.includes('await')) {
       return false;
     }
     return true;

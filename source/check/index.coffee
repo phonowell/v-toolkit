@@ -22,6 +22,7 @@ class M
     'api_'
     'await_'
     'class_'
+    'fn_'
     'spell_'
     'throw_'
   ]

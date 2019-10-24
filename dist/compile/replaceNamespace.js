@@ -5,10 +5,10 @@
 
   module.exports = function(cont, path) {
     var basename;
-    if (!~path.search('component')) {
+    if (!path.includes('component')) {
       return cont;
     }
-    if (!~path.search('index.')) {
+    if (!path.includes('index.')) {
       return cont;
     }
     if (!cont) {

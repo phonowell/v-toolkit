@@ -8,7 +8,7 @@
     if (!cont) {
       return '';
     }
-    if (!~cont.search(/inject = '/)) {
+    if (!cont.includes("inject = '")) {
       return cont;
     }
     listReplace = [];

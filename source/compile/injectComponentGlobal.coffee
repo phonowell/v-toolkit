@@ -6,7 +6,7 @@ module.exports = (cont) ->
   for key in ['router-link', 'thumb']
     do (key) ->
 
-      unless ~cont.search key
+      unless cont.includes key
         return
 
       cont = [

@@ -1,9 +1,9 @@
 module.exports = (cont, path, type) ->
 
-  unless ~path.search 'component'
+  unless path.includes 'component'
     return cont
 
-  unless ~path.search 'index.pug'
+  unless path.includes 'index.pug'
     return cont
 
   unless cont
@@ -14,7 +14,7 @@ module.exports = (cont, path, type) ->
 
   else if type == 'spa'
     container = 'page#page'
-    if ~cont.search container
+    if cont.includes container
       return cont
 
   else throw new Error "injectContainer/error: invalid type #{type}"

@@ -1,11 +1,15 @@
-$ = require 'fire-keeper'
+$ = try
+  require 'fire-keeper'
+catch
+  require './index'
+
 fs = require 'fs'
 
 # task
 for filename in fs.readdirSync './task'
   do (filename) ->
 
-    unless ~filename.search /\.coffee/
+    unless filename.includes '.coffee'
       return
 
     name = filename.replace /\.coffee/, ''

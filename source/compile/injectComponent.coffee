@@ -6,7 +6,7 @@ module.exports = (cont, list) ->
   unless list
     return cont
 
-  if ~cont.search 'components:'
+  if cont.includes 'components:'
     return cont
 
   prefix = ''

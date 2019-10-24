@@ -1,13 +1,13 @@
 (function() {
   module.exports = function(cont, path) {
     var i, len, line, listResult, name, ref, ref1, ref2, result;
-    if (!~path.search('component')) {
+    if (!path.includes('component')) {
       return cont;
     }
     if (!cont) {
       return '';
     }
-    if (~cont.search('methods:')) {
+    if (cont.includes('methods:')) {
       return cont;
     }
     if (!~cont.search(/\w+ = .*\-\>/)) {

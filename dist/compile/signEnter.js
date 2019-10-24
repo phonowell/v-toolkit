@@ -3,10 +3,10 @@
   var signMp, signSpa;
 
   signSpa = function(cont) {
-    if (~cont.search('beforeRouteEnter:')) {
+    if (cont.includes('beforeRouteEnter:')) {
       return cont;
     }
-    if (!~cont.search('enter =')) {
+    if (!cont.includes('enter =')) {
       return cont;
     }
     // return
@@ -14,10 +14,10 @@
   };
 
   signMp = function(cont) {
-    if (~cont.search('onShow:')) {
+    if (cont.includes('onShow:')) {
       return cont;
     }
-    if (!~cont.search('enter =')) {
+    if (!cont.includes('enter =')) {
       return cont;
     }
     // return
@@ -26,10 +26,10 @@
 
   // return
   module.exports = function(cont, path, type) {
-    if (!~path.search('component')) {
+    if (!path.includes('component')) {
       return cont;
     }
-    if (!~path.search('index.coffee')) {
+    if (!path.includes('index.coffee')) {
       return cont;
     }
     if (!cont) {

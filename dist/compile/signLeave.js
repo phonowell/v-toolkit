@@ -3,10 +3,10 @@
   var signMp, signSpa;
 
   signSpa = function(cont) {
-    if (~cont.search('beforeRouteLeave:')) {
+    if (cont.includes('beforeRouteLeave:')) {
       return cont;
     }
-    if (!~cont.search('leave =')) {
+    if (!cont.includes('leave =')) {
       return cont;
     }
     // return
@@ -14,10 +14,10 @@
   };
 
   signMp = function(cont) {
-    if (~cont.search('onHide:')) {
+    if (cont.includes('onHide:')) {
       return cont;
     }
-    if (!~cont.search('leave =')) {
+    if (!cont.includes('leave =')) {
       return cont;
     }
     // return
@@ -26,10 +26,10 @@
 
   // return
   module.exports = function(cont, path, type) {
-    if (!~path.search('component')) {
+    if (!path.includes('component')) {
       return cont;
     }
-    if (!~path.search('index.coffee')) {
+    if (!path.includes('index.coffee')) {
       return cont;
     }
     if (!cont) {

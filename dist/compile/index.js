@@ -52,7 +52,8 @@
         contCoffee = this.injectLodash(contCoffee);
         contCoffee = this.injectFn(contCoffee);
         contCoffee = this.injectComponent(contCoffee, option.component);
-        contCoffee = this.replaceThrow(contCoffee);
+        contCoffee = this.replaceError(contCoffee);
+        contCoffee = this.replaceExport(contCoffee);
         // return
         return coffee.compile(contCoffee);
       }
@@ -156,7 +157,7 @@
     */
     M.prototype.enabled = {};
 
-    M.prototype.feature = ['injectBasic', 'injectComponent', 'injectComponentGlobal', 'injectContainer', 'injectFn', 'injectLodash', 'makeVariable', 'replaceNamespace', 'replaceThrow', 'signComponent', 'signEnter', 'signLeave', 'signMethod'];
+    M.prototype.feature = ['injectBasic', 'injectComponent', 'injectComponentGlobal', 'injectContainer', 'injectFn', 'injectLodash', 'makeVariable', 'replaceError', 'replaceExport', 'replaceNamespace', 'signComponent', 'signEnter', 'signLeave', 'signMethod'];
 
     M.prototype.fn = {};
 
