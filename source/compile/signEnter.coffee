@@ -5,9 +5,6 @@ signSpa = (cont) ->
   if cont.includes 'beforeRouteEnter:'
     return cont
 
-  unless cont.includes 'enter ='
-    return cont
-
   # return
   [
     cont

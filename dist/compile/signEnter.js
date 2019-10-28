@@ -6,9 +6,6 @@
     if (cont.includes('beforeRouteEnter:')) {
       return cont;
     }
-    if (!cont.includes('enter =')) {
-      return cont;
-    }
     // return
     return [cont, '  beforeRouteEnter: (to, from, next) ->', '    next (vm) ->', '      vm.$refs.page.enter()', '      vm.enter? to, from'].join('\n');
   };

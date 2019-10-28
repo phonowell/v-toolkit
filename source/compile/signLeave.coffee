@@ -5,9 +5,6 @@ signSpa = (cont) ->
   if cont.includes 'beforeRouteLeave:'
     return cont
 
-  unless cont.includes 'leave ='
-    return cont
-
   # return
   [
     cont
