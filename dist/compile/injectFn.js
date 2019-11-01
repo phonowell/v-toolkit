@@ -23,8 +23,8 @@
       nameCapital = `_fn${_.capitalize(name)}`;
       prefix = [prefix, `import ${nameCapital} from '@/function/${name}'`, `$.${name} = ${nameCapital}`].join('\n');
     }
-    cont = [prefix, cont].join('\n');
-    return cont; // return
+    // return
+    return [prefix, cont].join('\n');
   };
 
 }).call(this);

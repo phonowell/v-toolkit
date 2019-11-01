@@ -51,6 +51,7 @@ class M
     'injectFn'
     'injectLodash'
     'makeVariable'
+    'replaceAlias'
     'replaceError'
     'replaceExport'
     'replaceNamespace'
@@ -68,6 +69,7 @@ class M
     contCoffee = await $.read_ path
     contCoffee = _.trim contCoffee or ''
 
+    contCoffee = @replaceAlias contCoffee
     contCoffee = @signEnter contCoffee, path, @name
     contCoffee = @signLeave contCoffee, path, @name
     contCoffee = @signMethod contCoffee, path

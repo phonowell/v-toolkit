@@ -46,6 +46,7 @@
         var contCoffee;
         contCoffee = (await $.read_(path));
         contCoffee = _.trim(contCoffee || '');
+        contCoffee = this.replaceAlias(contCoffee);
         contCoffee = this.signEnter(contCoffee, path, this.name);
         contCoffee = this.signLeave(contCoffee, path, this.name);
         contCoffee = this.signMethod(contCoffee, path);
@@ -157,7 +158,7 @@
     */
     M.prototype.enabled = {};
 
-    M.prototype.feature = ['injectBasic', 'injectComponent', 'injectComponentGlobal', 'injectContainer', 'injectFn', 'injectLodash', 'makeVariable', 'replaceError', 'replaceExport', 'replaceNamespace', 'signComponent', 'signEnter', 'signLeave', 'signMethod'];
+    M.prototype.feature = ['injectBasic', 'injectComponent', 'injectComponentGlobal', 'injectContainer', 'injectFn', 'injectLodash', 'makeVariable', 'replaceAlias', 'replaceError', 'replaceExport', 'replaceNamespace', 'signComponent', 'signEnter', 'signLeave', 'signMethod'];
 
     M.prototype.fn = {};
 

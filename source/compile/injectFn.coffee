@@ -16,6 +16,7 @@ module.exports = (cont) ->
   prefix = '$ = {}'
   listReplace = _.uniq listReplace
   for name in listReplace
+    
     nameCapital = "_fn#{_.capitalize name}"
 
     prefix = [
@@ -24,8 +25,8 @@ module.exports = (cont) ->
       "$.#{name} = #{nameCapital}"
     ].join '\n'
 
-  cont = [
+  # return
+  [
     prefix
     cont
   ].join '\n'
-  cont # return
