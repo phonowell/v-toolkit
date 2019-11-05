@@ -184,6 +184,8 @@ class M
         'injectComponentGlobal'
         'injectContainer'
         'replaceNamespace'
+        'signEnter'
+        'signLeave'
       ]
 
       when 'mp' then [
