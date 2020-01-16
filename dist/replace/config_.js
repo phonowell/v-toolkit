@@ -20,6 +20,7 @@
         value = data[key];
         cont = cont.replace(`{{${key}}}`, value[target]);
       }
+      cont = cont.replace(/"false"/g, 'false').replace(/"true"/g, 'true');
       return cont; // return
     }));
   };

@@ -18,4 +18,8 @@ module.exports = (target = 'development') ->
       cont = cont
       .replace "{{#{key}}}", value[target]
 
+    cont = cont
+    .replace /"false"/g, 'false'
+    .replace /"true"/g, 'true'
+
     cont # return

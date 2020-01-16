@@ -127,7 +127,7 @@
         listDisabled = (function() {
           switch (name) {
             case 'default':
-              return ['injectComponentGlobal', 'injectContainer', 'replaceNamespace'];
+              return ['injectComponentGlobal', 'injectContainer', 'replaceNamespace', 'signEnter', 'signLeave'];
             case 'mp':
               return ['replaceNamespace'];
             case 'spa':
